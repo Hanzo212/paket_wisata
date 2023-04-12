@@ -12,6 +12,8 @@ import lombok.NoArgsConstructor;
 public class paket {
 	
 	@Id
+	@Column(name = "id_paket")
+	private int id_paket;
 	@Column (name="nama_paket")
 	private String nama_paket;
 	@Column(name="harga_paket")
