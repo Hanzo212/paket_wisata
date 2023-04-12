@@ -14,6 +14,8 @@ public class pelanggan {
 	@Id
 	@Column(name="id_pelanggan")
 	private int id_pelanggan;
+	@Column(name = "password")
+	private String password;
 	@Column(name="nama_pelanggan")
 	private String nama_pelanggan;
 	@Column(name="email_pelanggan")
