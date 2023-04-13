@@ -2,21 +2,27 @@ package com.project.paket_wisata.controller;
 
 import java.util.List;
 
+import com.project.paket_wisata.service.loginService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.ResponseEntity;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.web.bind.annotation.*;
 
 import com.project.paket_wisata.model.paket;
+import com.project.paket_wisata.model.pelanggan;
 import com.project.paket_wisata.service.pwService;
 
 @RestController
 @RequestMapping("/pw")
+@CrossOrigin
+
 public class pwController {
 	
 	@Autowired
 	pwService pwService;
+
+	@Autowired
+	loginService loginService;
 	
 	@GetMapping("/allpaket")
 	public @ResponseBody List<paket> findAll() {
@@ -30,6 +36,15 @@ public class pwController {
 	//list all paket
 	
 	///register user
+	@PostMapping("/register")
+	public ResponseEntity register(
+			@RequestBody pelanggan pelanggan
+	){
+		BCryptPasswordEncoder encoder = new BCryptPasswordEncoder(16);
+		pelanggan.setPassword(encoder.encode(pelanggan.getPassword()));
+		String status = loginService.register(pelanggan);
+		return ResponseEntity.ok(status);
+	}
 	
 	//booking
 	
