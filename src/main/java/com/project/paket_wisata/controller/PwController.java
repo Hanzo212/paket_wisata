@@ -8,19 +8,19 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.project.paket_wisata.model.paket;
-import com.project.paket_wisata.service.pwService;
+import com.project.paket_wisata.model.Paket;
+import com.project.paket_wisata.service.PwService;
 
 @RestController
 @RequestMapping("/pw")
-public class pwController {
+public class PwController {
 	
 	@Autowired
-	pwService pwService;
+	PwService pwService;
 	
 	//list all paket
 	@GetMapping("/allpaket")
-	public @ResponseBody List<paket> findAll() {
+	public @ResponseBody List<Paket> findAll() {
 		
 		return pwService.getAllPaket();
 		
