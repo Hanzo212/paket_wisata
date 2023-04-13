@@ -2,27 +2,27 @@ package com.project.paket_wisata.controller;
 
 import java.util.List;
 
-import com.project.paket_wisata.service.loginService;
+import com.project.paket_wisata.model.Paket;
+import com.project.paket_wisata.model.Pelanggan;
+import com.project.paket_wisata.service.PwService;
+import com.project.paket_wisata.service.LoginService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
-import com.project.paket_wisata.model.paket;
-import com.project.paket_wisata.model.pelanggan;
-import com.project.paket_wisata.service.pwService;
 
 @RestController
 @RequestMapping("/pw")
 @CrossOrigin
 
-public class pwController {
+public class PaketController {
 
 	@Autowired
-	pwService pwService;
+	PwService pwService;
 
 	@Autowired
-	loginService loginService;
+	LoginService loginService;
 
 	// list all paket
 	@GetMapping("/allpaket")
@@ -37,7 +37,7 @@ public class pwController {
 	/// register user
 	@PostMapping("/register")
 	public ResponseEntity register(
-			@RequestBody pelanggan pelanggan) {
+			@RequestBody Pelanggan pelanggan) {
 		BCryptPasswordEncoder encoder = new BCryptPasswordEncoder(16);
 		pelanggan.setPassword(encoder.encode(pelanggan.getPassword()));
 		String status = loginService.register(pelanggan);
