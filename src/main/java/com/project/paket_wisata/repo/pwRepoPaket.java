@@ -7,7 +7,7 @@ import org.springframework.data.jpa.repository.Query;
 
 import com.project.paket_wisata.model.paket;
 
-public interface pwRepo extends JpaRepository<paket, String>{
+public interface pwRepoPaket extends JpaRepository<paket, String>{
 	
 	@Query(value="SELECT nama_paket, harga_paket from paket order by nama_paket", nativeQuery=true)
 	List<paket> findAllPaket();

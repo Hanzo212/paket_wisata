@@ -18,6 +18,7 @@ public class pwController {
 	@Autowired
 	pwService pwService;
 	
+	//list all paket
 	@GetMapping("/allpaket")
 	public @ResponseBody List<paket> findAll() {
 		
@@ -26,8 +27,6 @@ public class pwController {
 	}
 	
 	//login
-	
-	//list all paket
 	
 	///register user
 	
