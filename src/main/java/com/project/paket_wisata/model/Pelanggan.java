@@ -7,7 +7,7 @@ import lombok.NoArgsConstructor;
 @Entity
 @Data
 @NoArgsConstructor
-public class pelanggan {
+public class Pelanggan {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)

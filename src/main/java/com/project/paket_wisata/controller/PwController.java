@@ -17,37 +17,35 @@ import com.project.paket_wisata.service.pwService;
 @CrossOrigin
 
 public class pwController {
-	
+
 	@Autowired
 	pwService pwService;
 
 	@Autowired
 	loginService loginService;
-	
+
+	// list all paket
 	@GetMapping("/allpaket")
-	public @ResponseBody List<paket> findAll() {
-		
+	public @ResponseBody List<Paket> findAll() {
+
 		return pwService.getAllPaket();
-		
+
 	}
-	
-	//login
-	
-	//list all paket
-	
-	///register user
+
+	// login
+
+	/// register user
 	@PostMapping("/register")
 	public ResponseEntity register(
-			@RequestBody pelanggan pelanggan
-	){
+			@RequestBody pelanggan pelanggan) {
 		BCryptPasswordEncoder encoder = new BCryptPasswordEncoder(16);
 		pelanggan.setPassword(encoder.encode(pelanggan.getPassword()));
 		String status = loginService.register(pelanggan);
 		return ResponseEntity.ok(status);
 	}
-	
-	//booking
-	
-	//get all transaksi by id user
+
+	// booking
+
+	// get all transaksi by id user
 
 }

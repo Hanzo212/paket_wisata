@@ -9,7 +9,7 @@ import lombok.NoArgsConstructor;
 @Entity
 @Data
 @NoArgsConstructor
-public class paket {
+public class Paket {
 	
 	@Id
 	@Column(name = "id_paket")

@@ -5,17 +5,17 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.project.paket_wisata.model.paket;
-import com.project.paket_wisata.repo.pwRepo;
+import com.project.paket_wisata.model.Paket;
+import com.project.paket_wisata.repo.PwRepoPaket;
 
 @Service
-public class pwService {
+public class PwService {
 	
 	@Autowired
-	pwRepo pwRepo;
+	PwRepoPaket pwRepo;
 	
-	public List<paket> getAllPaket(){
-		List<paket> x = pwRepo.findAll();
+	public List<Paket> getAllPaket(){
+		List<Paket> x = pwRepo.findAll();
 		
 		return x;
 		
