@@ -33,17 +33,17 @@ public class PaketController {
 	}
 
 	// login
-	@PostMapping("/login")
-	public ResponseEntity login(
+	@PostMapping("/auth/login")
+	public ResponseEntity<String> login(
 			@RequestBody LoginDTO loginDTO
 			){
-		loginService.login(loginDTO);
-		return ResponseEntity.ok("login");
+		String status = loginService.login(loginDTO);
+		return ResponseEntity.ok(status);
 	}
 
 	/// register user
-	@PostMapping("/register")
-	public ResponseEntity register(
+	@PostMapping("/auth/register")
+	public ResponseEntity<String> register(
 			@RequestBody Pelanggan pelanggan) {
 		String status = loginService.register(pelanggan);
 		return ResponseEntity.ok(status);

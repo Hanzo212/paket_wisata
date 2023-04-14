@@ -21,8 +21,13 @@ public class LoginService {
 	private static final Logger LOGGER = LoggerFactory.getLogger(LoginService.class);
 
 	public String login(LoginDTO loginDTO) {
-		List<Pelanggan> pelanggans = pelangganRepository.findByEmailPelanggan(loginDTO.getEmail());
-		LOGGER.info(pelanggans.get(0).toString());
+		Pelanggan pelanggans = pelangganRepository.findByEmailPelanggan(loginDTO.getEmail());
+		if (pelanggans != null){
+			if(encoder.matches(loginDTO.getPassword(), pelanggans.getPassword())){
+				return pelanggans.getEmailPelanggan();
+			}
+			LOGGER.info(pelanggans.toString());
+		}
 		return null;
 
 	}
