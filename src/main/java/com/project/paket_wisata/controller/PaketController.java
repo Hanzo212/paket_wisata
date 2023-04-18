@@ -5,10 +5,14 @@ import java.util.List;
 import com.project.paket_wisata.dto.LoginDTO;
 import com.project.paket_wisata.model.Paket;
 import com.project.paket_wisata.model.Pelanggan;
+import com.project.paket_wisata.model.PelangganDetail;
 import com.project.paket_wisata.service.PwService;
 import com.project.paket_wisata.service.LoginService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
 
 
@@ -23,6 +27,8 @@ public class PaketController {
 
 	@Autowired
 	LoginService loginService;
+
+	private static final Logger LOG = LoggerFactory.getLogger("CEK LOGIN");
 
 	// list all paket
 	@GetMapping("/allpaket")
@@ -47,6 +53,16 @@ public class PaketController {
 			@RequestBody Pelanggan pelanggan) {
 		String status = loginService.register(pelanggan);
 		return ResponseEntity.ok(status);
+	}
+
+	@PostMapping("/auth/cek")
+	public ResponseEntity<Boolean> cek(@AuthenticationPrincipal PelangganDetail pelanggan){
+		if (pelanggan != null) {
+			LOG.info(pelanggan.toString());
+			LOG.info(pelanggan.getUsername());
+			return ResponseEntity.ok(true);
+		}
+		return ResponseEntity.ok(false);
 	}
 
 	// booking

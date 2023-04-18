@@ -9,7 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
+import java.util.Base64;
 
 @Service
 public class LoginService {
@@ -24,7 +24,8 @@ public class LoginService {
 		Pelanggan pelanggans = pelangganRepository.findByEmailPelanggan(loginDTO.getEmail());
 		if (pelanggans != null){
 			if(encoder.matches(loginDTO.getPassword(), pelanggans.getPassword())){
-				return pelanggans.getEmailPelanggan();
+				String raw = String.format("%s:%s", pelanggans.getEmailPelanggan(),loginDTO.getPassword());
+				return Base64.getEncoder().encodeToString(raw.getBytes());
 			}
 			LOGGER.info(pelanggans.toString());
 		}
